@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QApplication, QMainWindow, QLabel,QPushButton, QWidget, QLineEdit
+from PySide6.QtWidgets import QApplication, QMainWindow, QLabel,QPushButton,QLineEdit
 import pytube
 from PySide6.QtGui import QPixmap
 import sys
@@ -31,39 +31,17 @@ class MainWindow(QMainWindow):
         btn.setGeometry(240,100,100,50)
         btn.setStyleSheet("font-size: 20px;" "background: #3D94F6;")
         btn.clicked.connect(self.activa)
-        
+    
+    
     def activa(self):
-        self.ventana=ventana()
-        self.ventana.show()
         Link = self.tio.text()
-        asd=pytube.YouTube(Link)
-        self.ventana.urm2.setText(asd.title)
-        self.ventana.imag.setText(asd.thumbnail_url)
-        
-
-
-
-
-class ventana(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.setFixedSize(450,150)
-        self.setStyleSheet("background: #3C3838  ")
-        self.urm2 = QLabel(self)
-        self.urm2.setStyleSheet("color: #FF0000;")
-        self.urm2.setGeometry(165,60,300,20)
-        self.btn1 = QPushButton("Download",self)
-        self.btn1.setGeometry(240,100,100,50)
-        self.imag = QLabel(self)
-        self.imag.setStyleSheet("background: #FFFFFF;")
-        self.imag.setGeometry(32,20,100,100)
-
+        YT=pytube.YouTube(Link)
+        YT.streams.first().download()
 
         
+
 
     
-
-  
         
 
 if __name__=="__main__":
